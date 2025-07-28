@@ -49,12 +49,14 @@ func (p *Say) Name() string {
 	return "say"
 }
 
+// 会在插件配置变化的时候调用，解析配置并返回插件特定的配置上下文
 func (p *Say) ParseConf(in []byte) (interface{}, error) {
 	conf := SayConf{}
 	err := json.Unmarshal(in, &conf)
 	return conf, err
 }
 
+// 会在每个配置了 say 插件的请求中执行
 func (p *Say) RequestFilter(conf interface{}, w http.ResponseWriter, r pkgHTTP.Request) {
 	body := conf.(SayConf).Body
 	if len(body) == 0 {

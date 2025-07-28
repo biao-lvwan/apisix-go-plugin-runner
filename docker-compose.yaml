@@ -1,0 +1,9 @@
+version: '3'
+services:
+  apisix-go-plugin-runner:
+    image: 192.168.8.79:30290/apisix-go-plugin-runner:v1.0.1
+    hostname: "apisix-go-plugin-runner"
+    volumes:
+      - .:/app
+    privileged: true
+    restart: always
